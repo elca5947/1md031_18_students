@@ -1,12 +1,256 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>DELI-VERY</title>
-</head>
-<body>
-	<h1>
-		Hello world!
-	</h1>
-	<a href="/map">View map</a>
-</body>
+<html lang="en">
+    <head>
+      <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+      <!--<title>DELI-VERY MAP</title>
+      <link rel="stylesheet" href="css/deli-very.css">-->
+      <!--<script src="/vue/vue.js" defer></script>-->
+      <script src="/socket.io/socket.io.js" defer></script>
+      <script src="js/deli-very.js" defer></script>
+
+      <script type="text/javascript" src="js/menu.js"></script>
+      <script src="js/js_script.js" defer></script>
+      <script src="https://vuejs.org/js/vue.js" defer></script>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <title>Burger selection</title>
+      <meta charset="utf-8"/>
+      <script src="js/vue_script.js" defer></script>
+
+
+      <!--<div id="myID">
+          <p>
+            {{ arbitraryVariableName }}
+          </p>-->
+
+        <!--<span v-for="info in infoArray">
+          {{ info }}
+        </span>
+
+        <p>
+          {{ infoArray[0] }}
+        </p>-->
+
+        <!--<dl v-for="burger in menuArray">
+          <dt>
+            {{ burger.burgerName }}
+          </dt>
+
+          <li>
+            <span>kCal: </span>{{ burger.kCal }}
+          </li>
+          <li>
+            <span>Gluten: </span>{{ burger.glutenExists}}
+          </li>
+          <li>
+            <span>Lactose: </span>{{ burger.lactoseExists }}
+          </li>
+        </dl>
+        <p v-if="booleanExpression">
+          hej
+        </p>-->
+
+
+
+    </head>
+
+    <body>
+      <main>
+        <div id="myID">
+        <header>
+          <h1>Welcome to the online world of burgers</h1>
+          <img id="burgerback" src="https://www.litmos.com/wp-content/uploads/2016/01/listen-to-patients.png">
+        </header>
+
+        <!--<section class="classname">
+    <p>A block element <span id="idname">with an in-line element </span></p>
+</section>-->
+
+          <section id="selection">
+            <h3>Burger selection</h3>
+            <p>{{ arbitraryVariableName }}</p>
+
+            <!--<div class="wrapper">-->
+              <div class="box" align="center" v-for="burger in menu">
+                <h4>{{ burger.name }}</h4>
+                <img :src="burger.img" width="200">
+                <span>kCal: {{ burger.kCal }}</span>
+                <span id="lactose" v-if="burger.lactose">Lactose</span>
+                <span id="gluten" v-if="burger.gluten">Gluten</span>
+                <span id="vegan" v-if="burger.vegan">Vegan</span>
+                <input type="checkbox" :value="burger.name" v-model="pickedBurger">
+              </div>
+
+               <!--<div class="box a">
+                 <h4>
+                   {{ menuArray[2].burgerName }}
+                 </h4>
+                 <img src="https://d2nzqyyfd6k6c7.cloudfront.net/styles/nova_wysiwyg_body__1400px_/s3/20130712_14_groenteburger.png?itok=nvACvugh"
+               width="200" height="200">
+                <ul>
+                  <li id="lactose">Lactose: {{ menuArray[2].lactoseExists }}</li>
+                  <li>kCal: {{ menuArray[2].kCal }}</li>
+                  <li id="gluten">Gluten: {{ menuArray[2].glutenExists }}</li>
+                </ul>
+                <input type="checkbox" id="firstCheckbox" value="checkbox1" v-model="pickedBurger">
+                <label for="firstCheckbox">Pick me</label>
+               </div>
+
+               <div class="box b">
+                 <h4>
+                   {{ menuArray[1].burgerName }}
+                 </h4>
+                 <img src="https://mcdonalds.com.au/sites/mcdonalds.com.au/files/Product_thumb_McChicken_0.png"
+               width="200">
+                <ul>
+                  <li id="vegan">Vegan: {{ menuArray[1].veganBurger }}</li>
+                  <li>kCal: {{ menuArray[1].kCal }}</li>
+                  <li id="gluten">Gluten: {{ menuArray[1].glutenExists }}</li>
+                </ul>
+                <input type="checkbox" id="checkbox2" value="checkbox2" v-model="pickedBurger">
+                <label for="checkbox2">Pick me</label>
+               </div>
+
+               <div class="box c">
+                 <h4>
+                   {{ menuArray[0].burgerName }}
+                 </h4>
+                 <img src="https://www.mcdonalds.co.za/sites/default/files/productThumbnail/mcd-food-beef-mcfeast-burger.png"
+               width="200">
+                 <ul>
+                   <li id="lactose">Lactose: {{ menuArray[0].lactoseExists }}</li>
+                   <li>kCal: {{ menuArray[0].kCal }}
+                   <li id="gluten">Gluten: {{ menuArray[0].glutenExists }}</li>
+                 </ul>
+                 <input type="checkbox" id="checkbox3" value="checkbox3" v-model="pickedBurger">
+                 <label for="checkbox3">Pick me</label>
+               </div>-->
+
+             <!--</div>-->
+
+
+            <!--<table>
+              <thead>
+                <tr>
+                  <th>The soy version</th>
+                  <th>The chickpea version</th>
+                  <th>The bean version</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <img src="https://d2nzqyyfd6k6c7.cloudfront.net/styles/nova_wysiwyg_body__1400px_/s3/20130712_14_groenteburger.png?itok=nvACvugh"
+                  width="200">
+                  </td>
+                  <td>
+                    <img src="https://mcdonalds.com.au/sites/mcdonalds.com.au/files/Product_thumb_McChicken_0.png"
+                  width="200">
+                  </td>
+                  <td>
+                    <img src="https://www.mcdonalds.co.za/sites/default/files/productThumbnail/mcd-food-beef-mcfeast-burger.png"
+                  width="200">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <ul>
+                      <li id="lactose">Lacto-ovo</li>
+                      <li>Deep-fried separately from meat</li>
+                      <li id="gluten">Contains gluten</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      <li id="vegan">Vegan</li>
+                      <li>Deep-fried separately from meat</li>
+                      <li id="gluten">Contains gluten</li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      <li id="lactose">Lacto-ovo</li>
+                      <li id="gluten">Contains gluten</li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>-->
+
+          </section>
+
+
+          <section id="contact">
+            <h3>Who are you?</h3>
+            <p>Type in necessary information about your order</p>
+            <h4>Delivery information:</h4>
+            <form>
+              <p>
+                <label for="firstlastname">Full name</label><br>
+                <input v-model="fullName" placeholder="First- and last name">
+              </p>
+              <p>
+                <label for="email">E-mail address</label><br>
+                <input v-model="eMail" placeholder="E-mail address">
+              </p>
+              <!--<p>
+                <label for="streetname">Street</label><br>
+                <input v-model="streetName" placeholder="Street name">
+              </p>
+              <p>
+                <label for="house">House</label><br>
+                <input v-model="houseNumber" placeholder="House number">
+              </p>-->
+
+              <p>
+                <label for="paymeny">Payment method</label><br>
+                <select v-model="paymentMethod" id="paymeny" name="pm">
+                  <option>Swish</option>
+                  <option>Credit card</option>
+                  <option>Klarna</option>
+                  <option>Invoice</option>
+                </select>
+              </p>
+              <span>Gender</span><br>
+              <input type="radio" name="gender" value="Male" checked="checked" v-model="genderInfo"> Male<br>
+              <input type="radio" name="gender" value="Female" v-model="genderInfo"> Female<br>
+              <input type="radio" name="gender" value="Other" v-model="genderInfo"> Other<br>
+            </form>
+
+            <h1> Click in the map! </h1>
+            <a href="/dispatcher" target="_blank">Open dispatcher in new window</a>.
+            <div class="view-box">
+              <div id="dots" v-on:click="addOrder">
+                  <div
+                    v-for="(order, key) in orders"
+                    v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+                    {{key}}
+                  </div>
+              </div>
+            </div>
+
+          </section>
+          <br />
+
+          <button v-on:click="orderDone()" type="submit">
+            <img src="https://cdn0.iconfinder.com/data/icons/webshop-essentials/100/shopping-cart-512.png" width="10"> Place my order
+          </button>
+
+          <!--<p>
+            Picked burgers: {{ pickedBurger }}
+          </p>-->
+          <p v-for="(value, key) in orderInfo">
+            {{ key }}: {{ value }}
+          </p>
+
+          </div>
+        </main>
+
+        <footer>
+          <br />
+          <hr>
+          <div>Burger Selection AB 2018</div>
+        </footer>
+
+      </body>
+
 </html>
