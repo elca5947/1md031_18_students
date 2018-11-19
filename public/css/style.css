@@ -1,0 +1,173 @@
+/* comment */
+
+header {
+  margin: 10px 30px 10px;
+  overflow: hidden;
+  height: 300px;
+}
+
+h1 {
+  margin-top: 130px;
+  padding-left: 180px;
+  position: absolute;
+}
+
+#burgerback {
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 15pt;
+  text-align: center;
+}
+
+.wrapper {
+     display: inline-grid;
+     grid-gap: 10px;
+     padding: 20px;
+     /*grid-template-columns: 33% 33% 30%;*/
+}
+
+.box {
+     color: #fff;
+     border-radius: 5px;
+     font-size: 100%;
+     width: 200px;
+     display: inline-grid;
+
+}
+
+.a {
+     grid-column: 1
+     grid-row: 1;
+}
+
+.b {
+     grid-column: 2;
+     grid-row: 1;
+}
+
+.c {
+     grid-column: 3;
+     grid-row: 1;
+}
+
+table {
+  text-align: center;
+  width: 100%;
+  padding-right: 100px;
+}
+
+section {
+  margin: 10px 30px 10px;
+}
+
+h3 {
+  text-align: center;
+  color: #000000;
+  font-style: italic;
+}
+
+h4 {
+  width: 100%;
+  color: #000000;
+}
+
+/*.selection {
+  color: #ff5500;
+}*/
+
+/*#burgerback {
+  margin: 10px 30px 10px;
+  width: auto;
+  background-repeat: repeat-x;
+}*/
+
+#selection {
+  background-color: #cccccc;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#contact {
+  text-align: center;
+  padding-bottom: 20px;
+  border: 1px dashed #000000;
+}
+
+#gluten {
+  font-weight: normal;
+  color: #b51515
+}
+
+#vegan {
+  font-weight: normal;
+  color: #b51515;
+}
+
+#lactose {
+  font-weight: normal;
+  color: #b51515;
+}
+
+button {
+  width: 150px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #cccccc;
+  cursor: pointer;
+}
+
+#buttonprop {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+}
+
+.view-box {
+	width: 90%;
+	height: 50vh;
+	margin: 1em auto;
+	overflow: scroll;
+	border: 1px solid rgba(0,0,0,0.4);
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+#dots {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	background: url(/img/polacks.jpg);
+	background-repeat: no-repeat;
+	width:1920px;
+	height: 1078px;
+	cursor: crosshair;
+}
+
+#dots div {
+	position: absolute;
+	background: black;
+	color: white;
+	border-radius: 10px;
+	width:20px;
+	height:20px;
+	text-align: center;
+}
+
+#orderList {
+	top:1em;
+	left:1em;
+	position: absolute;
+	z-index: 2;
+	color:black;
+	background: rgba(255,255,255, 0.5);
+	padding: 1em;
+}
