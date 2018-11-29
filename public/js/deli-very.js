@@ -5,22 +5,22 @@
 var socket = io();
 
 var vm = new Vue({
-  el: '#dots',
+  el: '#dotss',
   data: {
-    orders: {},
+    orders1: {},
   },
   created: function () {
     socket.on('initialize', function (data) {
-      this.orders = data.orders;
+      this.orders1 = data.orders1;
     }.bind(this));
 
     socket.on('currentQueue', function (data) {
-      this.orders = data.orders;
+      this.orders1 = data.orders1;
     }.bind(this));
   },
   methods: {
     getNext: function () {
-      var lastOrder = Object.keys(this.orders).reduce(function (last, next) {
+      var lastOrder = Object.keys(this.orders1).reduce(function (last, next) {
         return Math.max(last, next);
       }, 0);
       return lastOrder + 1;

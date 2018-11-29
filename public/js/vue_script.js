@@ -1,3 +1,6 @@
+'use strict';
+var socket = io();
+
 var vm = new Vue({
   el: '#myID',
   data: {
@@ -17,11 +20,13 @@ var vm = new Vue({
       Name: '',
       Email: '',
       Payment: '',
-      Gender: ''
+      Gender: '',
+      Location: ''
     },
     booleanExpression: boolExp,
     stockArray: stockBurger,
-    orders: {}
+    orders: { x:'', y:''},
+    positionDetails: {}
   },
   created: function () {
     socket.on('initialize', function (data) {
@@ -34,11 +39,13 @@ var vm = new Vue({
   },
   methods: {
     orderDone: function () {
+
       this.orderInfo.Burger = this.pickedBurger;
       this.orderInfo.Name = this.fullName;
       this.orderInfo.Email = this.eMail;
       this.orderInfo.Payment = this.paymentMethod;
       this.orderInfo.Gender = this.genderInfo;
+      this.orderInfo.Location = [this.orders.x, this.orders.y];
     },
   getNext: function () {
     var lastOrder = Object.keys(this.orders).reduce( function (last, next) {
@@ -46,15 +53,28 @@ var vm = new Vue({
     }, 0);
     return lastOrder + 1;
   },
-  addOrder: function (event) {
+  displayOrder: function (event) {
+    var offset = {x: event.currentTarget.getBoundingClientRect().left,
+                  y: event.currentTarget.getBoundingClientRect().top};
+    this.orders.x = event.clientX;
+    this.orders.y = event.clientY;
+    this.positionDetails = { posx: event.clientX - 10 - offset.x,
+                             posy: event.clientY - 10 - offset.y };
+  },
+  addOrder: function () {
+    //var offset = {x: event.currentTarget.getBoundingClientRect().left,
+    //              y: event.currentTarget.getBoundingClientRect().top};
+    var msgX = this.positionDetails.posx;
+    var msgY = this.positionDetails.posy;
     socket.emit("addOrder", { orderId: this.getNext(),
-                                details: { x: event.clientX-10 - event.currentTarget.getBoundingClientRect().left,
-                                           y: event.clientY-10 - event.currentTarget.getBoundingClientRect().top},
-                                orderItems: ["Beans", "Curry"]
-                              });
+                              details: { x: msgX,
+                                         y: msgY },
+                              orderItems: [this.orders.x, this.orders.y]
+                            });
     },
-    displayOrder: function (event) {
-
+    buttonHandler: function () {
+      this.orderDone();
+      this.addOrder();
     }
   }
 })

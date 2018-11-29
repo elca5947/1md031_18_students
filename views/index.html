@@ -6,9 +6,9 @@
       <link rel="stylesheet" href="css/deli-very.css">-->
       <!--<script src="/vue/vue.js" defer></script>-->
       <script src="/socket.io/socket.io.js" defer></script>
-      <script src="js/deli-very.js" defer></script>
+      <!--<script src="js/deli-very.js" defer></script>-->
 
-      <script type="text/javascript" src="js/menu.js"></script>
+      <script type="text/javascript" src="js/menu.js" defer></script>
       <script src="js/js_script.js" defer></script>
       <script src="https://vuejs.org/js/vue.js" defer></script>
       <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -219,11 +219,9 @@
             <h1> Click in the map! </h1>
             <a href="/dispatcher" target="_blank">Open dispatcher in new window</a>.
             <div class="view-box">
-              <div id="dots" v-on:click="addOrder">
-                  <div
-                    v-for="(order, key) in orders"
-                    v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
-                    {{key}}
+              <div id="dots" v-on:click="displayOrder">
+                  <div v-bind:style="{ left: positionDetails.posx + 'px', top: positionDetails.posy + 'px'}">
+                    T
                   </div>
               </div>
             </div>
@@ -231,7 +229,7 @@
           </section>
           <br />
 
-          <button v-on:click="orderDone()" type="submit">
+          <button v-on:click="buttonHandler" type="submit">
             <img src="https://cdn0.iconfinder.com/data/icons/webshop-essentials/100/shopping-cart-512.png" width="10"> Place my order
           </button>
 
